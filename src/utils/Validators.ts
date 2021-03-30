@@ -5,7 +5,7 @@
 /* eslint-disable radix */
 /* eslint-disable one-var */
 export default {
-  CNPJ: (cnpj) => {
+  CNPJ: (cnpj: any) => {
     if (cnpj === "" || !cnpj) return true;
     cnpj = cnpj.replace(/[^\d]+/g, "");
     if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
@@ -13,7 +13,7 @@ export default {
       d = cnpj.substring(t),
       d1 = parseInt(d.charAt(0)),
       d2 = parseInt(d.charAt(1)),
-      calc = (x) => {
+      calc = (x: any) => {
         let n = cnpj.substring(0, x),
           y = x - 7,
           s = 0,
@@ -27,7 +27,7 @@ export default {
       };
     return calc(t) === d1 && calc(t + 1) === d2;
   },
-  CPF: (cpf) => {
+  CPF: (cpf: any) => {
     if (cpf === "" || !cpf) return true;
     if (typeof cpf !== "string") return false;
     cpf = cpf.replace(/[\s.-]*/gim, "");
@@ -62,7 +62,7 @@ export default {
     if (resto !== parseInt(cpf.substring(10, 11))) return false;
     return true;
   },
-  EMAIL: (email) => {
+  EMAIL: (email: any) => {
     if (email.length <= 0) return true;
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
